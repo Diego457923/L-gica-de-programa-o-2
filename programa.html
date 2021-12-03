@@ -1,0 +1,30 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "lightgrey";
+	brush_tool.fillRect(0,0, 600,400);
+
+	brush_tool.fillStyle = "green";
+	brush_tool.fillRect(0, 0, 200, 400);
+
+	brush_tool.fillStyle = "red";
+	brush_tool.fillRect(400, 0, 200, 400);
+
+	brush_tool.fillStyle = "yellow"
+	brush_tool.beginPath();
+	brush_tool.moveTo(300, 200);
+	brush_tool.lineTo(200, 400);
+	brush_tool.lineTo(400, 400);
+	brush_tool.fill();
+
+	brush_tool.fillStyle = "blue";
+	brush_tool.beginPath();
+	brush_tool.arc(300, 200, 50, 0, 2 * 3.14);
+	brush_tool.fill();
+
+
+</script>

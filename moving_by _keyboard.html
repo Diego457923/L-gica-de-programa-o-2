@@ -1,0 +1,74 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "lightgrey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	var x = 20;
+	var y = 20;
+
+	//code keyboard
+
+	var left = 37;
+	var up = 38;
+	var right = 39;
+	var low = 40;
+
+	//increment rate
+
+	var rate = 10;
+
+	function drawCircle (x, y, ray) {
+
+		brush_tool.fillStyle = "blue";
+		brush_tool.beginPath();
+		
+		brush_tool.arc(x, y, ray, 0, 2 * Math.PI);
+		
+		brush_tool.fill();
+	}
+
+	function clearScreen() {
+		
+		brush_tool.fillStyle = "lightgrey"
+
+		brush_tool.fillRect(0, 0, 600,400)
+	}
+
+	function screenUpdate() {
+		
+		clearScreen();
+
+		drawCircle(x, y, 10);
+	}
+
+	setInterval(screenUpdate, 20);
+
+	function redingKeyboard(event) {
+		
+		if (event.keyCode == left) {
+
+			x -= rate;
+		
+		} else if (event.keyCode == up) {
+
+			y -= rate;
+
+		}else if (event.keyCode == right) {
+
+			x += rate;
+
+		} else if (event.keyCode == low) {
+
+			y += rate;
+		}
+
+	}
+
+	document.onkeydown = redingKeyboard;
+
+</script>

@@ -1,0 +1,72 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "lightgrey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	function drawFlagBrasil() {
+
+	    brush_tool.fillStyle="green";
+	    brush_tool.fillRect(0, 0, 600, 400);
+
+	    //square of the flag
+	    brush_tool.fillStyle="yellow";
+	    brush_tool.beginPath();
+	    brush_tool.moveTo(300, 50);
+	    brush_tool.lineTo(50, 200);
+	    brush_tool.lineTo(550, 200);
+	    brush_tool.fill();
+
+	    //rhombus of the flag
+	    brush_tool.beginPath();
+	    brush_tool.moveTo(50, 200);
+	    brush_tool.lineTo(300, 350);
+	    brush_tool.lineTo(550, 200);
+	    brush_tool.fill();
+
+	    //Central circle of the flag
+	    brush_tool.fillStyle="darkblue";
+	    brush_tool.beginPath();
+	    brush_tool.arc(300, 200, 100, 0, 2* 3.14);
+	    brush_tool.fill();
+	}
+
+	function drawFlagGermany() {
+
+		//line black of the flag
+	    brush_tool.fillStyle = 'black';
+	    brush_tool.fillRect(0, 0, 600, 133);
+
+	    //line red of the flag
+	    brush_tool.fillStyle = 'red';
+	    brush_tool.fillRect(0, 133, 600, 133);
+
+	    //line yellow of the flag
+	    brush_tool.fillStyle = 'yellow';
+	    brush_tool.fillRect(0, 266, 600, 133);
+	}
+
+	var showBrasil = true;
+
+	function changeFlag() {
+
+		if (showBrasil) {
+			
+			drawFlagBrasil();
+		
+		} else {
+			
+			drawFlagGermany();
+
+		}
+		
+		showBrasil = !showBrasil;
+	}
+
+	setInterval(changeFlag, 3000);
+
+</script>

@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	function drawText(x, y, text) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+
+		brush_tool.font = '20px Georgia';
+		brush_tool.fillStyle = 'black';
+		brush_tool.fillText(text, x, y);
+	}
+	
+
+
+	function drawSquare(x, y, size, color) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+
+		brush_tool.fillStyle = color;
+		brush_tool.fillRect(x, y, size, size);
+
+		brush_tool.fillStroke = "black";
+		brush_tool.strokeRect(x, y, size, size);
+	}
+
+	/*
+	var fraction = 
+	var sizeSquares = 50
+	
+	for(var x = 0, x < fraction, x++) {
+
+		drawSquare(50 + sizeSquares*x, 50, sizeSquares, "green");
+	}
+	*/
+	drawText(50, 30, "What is the fraction?");
+
+	drawSquare(50, 50, 100, "green");
+	drawSquare(150, 50, 100, "green");
+	drawSquare(250, 50, 100, "green");
+	drawSquare(350, 50, 100, "white");
+
+</script>
+	

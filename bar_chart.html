@@ -1,0 +1,67 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	//Function that draw Text
+
+	function drawText(x, y, text) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+
+		brush_tool.font = "20px Georgia";
+		brush_tool.fillStyle = "black";
+		brush_tool.fillText(text, x, y);
+	}
+
+	//Function that draws a quadrilateral
+
+	function drawSquare(x, y,width, height, color) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+
+		//Quadrilateral
+
+		brush_tool.fillStyle = color;
+		brush_tool.fillRect(x, y, width, height);
+
+		//Edge
+
+		brush_tool.fillStroke = "black";
+		brush_tool.strokeRect(x, y, width, height);
+	}
+
+	//Function that draws the bar graph with the percentages, color and year of the survey
+
+	function drawBar(x, y, year, colorbrowsers, text) {
+		
+		drawText(x, y/2, text);
+
+		var yAxisPosition = 0;
+
+		for(var i = 0; i < year.length; i++) {
+
+			drawSquare(x, y + yAxisPosition, 50, year[i], colorbrowsers[i]);
+
+			yAxisPosition += year[i];
+		}
+	}
+
+	//Percentage and color of browser usage per year
+
+	var browsers = {
+
+		year2015: [50, 25, 20, 5],
+		year2016: [65,20,13,2],
+
+		color: ["blue", "green", "yellow", "red"]
+	}
+
+	drawBar(50, 50, browsers.year2015, browsers.color, '2015');
+
+	drawBar(150, 50, browsers.year2016, browsers.color, '2016');
+
+
+</script>
+	

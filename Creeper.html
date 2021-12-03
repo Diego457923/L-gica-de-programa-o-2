@@ -1,0 +1,22 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	//face
+	brush_tool.fillStyle = "darkgreen";
+	brush_tool.fillRect(200,50, 350, 300);
+
+	// eayes
+	brush_tool.fillStyle = "black";
+	brush_tool.fillRect(250, 110, 90, 90);
+	brush_tool.fillRect(410, 110, 90, 90);
+
+	brush_tool.fillRect(340, 200, 70, 100);
+
+	brush_tool.fillRect(300, 240, 40, 100);
+	brush_tool.fillRect(410, 240, 40, 100);
+
+</script>

@@ -1,0 +1,43 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "lightgrey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	var ray = 10;
+
+	function drawCircle (x, y, ray, color) {
+
+		brush_tool.fillStyle = color;
+		brush_tool.beginPath();
+		
+		brush_tool.arc(x, y, ray, 0, 2 * 3.14);
+		
+		brush_tool.fill();
+	}
+
+	drawCircle(300, 200, ray +20, "red");
+	drawCircle(300, 200, ray +10,  "white");
+	drawCircle(300, 200, ray, "red");
+
+	function shoot(event) {
+		
+		var x = event.pageX - screen.offsetLeft;
+        var y = event.pageY - screen.offsetTop;
+
+        if (x > 300 - ray 
+            && x < 300 + ray
+                && y > 200 - ray 
+                    && y < 200 + ray) {
+
+            alert('Acertou');
+        }
+	}
+
+	screen.onclick = shoot;
+
+</script>

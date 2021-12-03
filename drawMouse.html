@@ -1,0 +1,50 @@
+<canvas width="600" height="400"></canvas>
+<br>
+
+Choose a color <input type="color">
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "grey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	var color = document.querySelector("input");
+	var chosenColor = 0;
+
+	var ray = 10;
+
+	var draw = false;
+
+	screen.onmousemove = function (event) {
+
+		if (draw) {
+
+			var x = event.pageX - screen.offsetLeft;
+			var y = event.pageY - screen.offsetTop;
+
+			brush_tool.fillStyle = color.value;
+			brush_tool.beginPath();
+			
+			brush_tool.arc(x, y, ray, 0, 2 * 3.14);
+			
+			brush_tool.fill();
+
+			console.log(x + ", " + y);
+		}	
+	}
+
+	screen.onmousedown = function () {
+
+        draw = true;
+    }
+
+    screen.onmouseup = function () {
+
+        draw = false;
+    }
+
+
+</script>

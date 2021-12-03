@@ -1,0 +1,26 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "grey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	function displayAlert(event) {
+
+		var x = event.pageX - screen.offsetLeft;
+		var y = event.pageY - screen.offsetTop;
+
+		brush_tool.fillStyle = "blue";
+		brush_tool.beginPath();
+		brush_tool.arc(x, y, 10, 0, 2 * 3.14);
+		brush_tool.fill();
+
+		console.log(x + ", " + y);
+	}
+
+	screen.onclick = displayAlert;
+
+</script>

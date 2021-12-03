@@ -1,0 +1,72 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "lightgrey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+
+	//VARIABLE
+
+	var ray = 10;
+
+	var xRandom;
+	var yRandom;
+
+
+	function drawCircle (x, y, ray, color) {
+
+		brush_tool.fillStyle = color;
+		brush_tool.beginPath();
+		
+		brush_tool.arc(x, y, ray, 0, 2 * 3.14);
+		
+		brush_tool.fill();
+	}
+
+	function clearScreen() {
+	
+		brush_tool.clearRect(0,0, 600,400);
+	}
+
+	function drawTarget(x, y) {
+
+		drawCircle(x, y, ray + 20, "red");
+		drawCircle(x, y, ray + 10, "white");
+		drawCircle(x, y, ray, "red");
+
+	}
+
+	function drawPosition(maximum) {
+		
+		return Math.floor(Math.random() * maximum);
+	}
+
+	function updateScreen(argument) {
+		clearScreen();
+		xRandom = drawPosition(570);
+		yRandom = drawPosition(370);
+
+		drawTarget(xRandom, yRandom);
+	}
+
+		
+	setInterval(updateScreen, 1000);
+
+	function shoot(event) {
+		
+		var x = event.pageX - screen.offsetLeft;
+		var y = event.pageY - screen.offsetTop
+
+		if (x > xRandom - ray && x < xRandom + ray && y > yRandom - ray && y < yRandom + ray) {
+
+			alert("Hit the target! Congratulations")
+		}
+	}
+
+	screen.onclick = shoot;
+
+</script>

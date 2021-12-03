@@ -1,0 +1,28 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	function drawGreenSquare(x, y, color) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+		
+		//Square
+		brush_tool.fillStyle = color;
+		brush_tool.fillRect(x,y, 50, 50);
+		
+		//Dash of the Square
+		brush_tool.fillStroke = "black";
+		brush_tool.strokeRect(x, y, 50, 50);
+
+	}
+
+	for(var x =0; x < 600; x += 50) {
+		
+		drawGreenSquare(x, 0, "green");
+	}
+	
+	
+
+</script>
+	

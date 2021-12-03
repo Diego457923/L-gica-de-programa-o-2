@@ -1,0 +1,50 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "grey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	var colors = ["blue", "red", "green"];
+	var chosenColor = 0;
+
+	var ray = 10;
+
+	function drawCircle(event) {
+
+		var x = event.pageX - screen.offsetLeft;
+		var y = event.pageY - screen.offsetTop;
+
+		brush_tool.fillStyle = colors[chosenColor];
+		brush_tool.beginPath();
+		
+
+		if (event.shiftKey && event.altKey) {
+
+			alert("Please, type one keyboard key at a time! ");
+
+			return false;
+
+		} else if (event.shiftKey && ray < 40) {
+			
+			ray += 10
+
+		} else if (event.altKey && ray > 10) {
+
+			ray -= 5
+
+		} 
+
+		brush_tool.arc(x, y, ray, 0, 2 * 3.14);
+		
+		brush_tool.fill();
+
+		console.log(x + ", " + y);
+	}
+
+	screen.onclick = drawCircle;
+
+</script>

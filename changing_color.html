@@ -1,0 +1,43 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var screen = document.querySelector("canvas");
+	var brush_tool = screen.getContext("2d");
+
+	brush_tool.fillStyle = "grey";
+	brush_tool.fillRect(0, 0, 600, 400);
+
+	var colors = ["blue", "red", "green"];
+	var chosenColor = 0;
+
+	function displayAlert(event) {
+
+		var x = event.pageX - screen.offsetLeft;
+		var y = event.pageY - screen.offsetTop;
+
+		brush_tool.fillStyle = colors[chosenColor];
+		brush_tool.beginPath();
+		brush_tool.arc(x, y, 10, 0, 2 * 3.14);
+		brush_tool.fill();
+
+		console.log(x + ", " + y);
+	}
+
+	screen.onclick = displayAlert;
+
+	function changingColor() {
+		
+		chosenColor++;
+
+		if (chosenColor >= colors.length) {
+
+			chosenColor = 0;
+		}
+
+		return false;
+	}
+
+	screen.oncontextmenu = changingColor;
+
+</script>

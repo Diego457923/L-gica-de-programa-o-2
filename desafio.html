@@ -1,0 +1,96 @@
+<meta charset="UTF-8">
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    //DRAW SQUARE
+    function drawSquare(x, y, size, color) {
+
+        brush_tool.fillStyle = color;
+        brush_tool.fillRect(x, y, size, size)
+        brush_tool.fill();
+    }
+
+    //DRAW CIRCLE
+    function drawCircle(x, y, ray, color) {
+
+        brush_tool.fillStyle = color;
+        brush_tool.beginPath();
+        brush_tool.arc(x, y, ray, 0, 2 * 3.14);
+        brush_tool.fill();
+
+    }
+
+    //COLORS PALETTE
+    function drawColorsPalette() {
+
+        drawSquare(xRed, ySquares, squareSizes, 'red');
+        drawSquare(xGreen, ySquares, squareSizes, 'green');
+        drawSquare(xBlue, ySquares, squareSizes, 'blue');
+
+    }
+
+    //handlesMouseMovement
+    function handlesMouseMovement(event) {
+
+        var x = event.pageX - screen.offsetLeft;
+        var y = event.pageY - screen.offsetTop;
+
+        if(draw && ((x < 150 && y > 53) || (x > 150) )) {
+
+            drawCircle(x, y, 5, currentColor);
+        }
+    }
+
+    //ALOW DRAWING
+    function allowDraw() {
+
+        draw = true;
+    }
+
+    //DISABLE DRAWING
+    function disableDrawing() {
+
+        draw = false;
+    }
+
+    //COLOR CHANGE FUNCTION
+    function changeColor(event) {
+        
+        var x = event.pageX - screen.offsetLeft;
+        var y = event.pageY - screen.offsetTop;
+
+        if (x < 50 && y < 50) {
+            currentColor = "red";
+        } else if (x < 100 && y < 50) {
+            currentColor = "green";
+        } else if (x > 100 && y < 50) {
+            currentColor = "blue";
+        }
+    }
+
+    var screen = document.querySelector('canvas');
+    var brush_tool = screen.getContext('2d');
+    brush_tool.fillStyle = 'lightgray';
+    brush_tool.fillRect(0, 0, 600, 400);
+
+    var draw = false;
+    var currentColor = 'blue';
+    var xRed = 0;
+    var xGreen  = 50;
+    var xBlue = 100;
+    var ySquares = 0;
+    var squareSizes = 50;
+
+    drawColorsPalette(); // mostra os quadrados de seleção de cores
+
+    screen.onclick = changeColor;
+   
+    screen.onmousemove = handlesMouseMovement;
+
+    screen.onmousedown = allowDraw;
+
+    screen.onmouseup = disableDrawing;
+
+</script>

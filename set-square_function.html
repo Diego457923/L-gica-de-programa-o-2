@@ -1,0 +1,29 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+	function squareDrawing(Xa, Ya, Xc, Yc, color, intColor) {
+		
+		var screen = document.querySelector("canvas");
+		var brush_tool = screen.getContext("2d");
+
+
+		brush_tool.fillStyle = color;
+		brush_tool.beginPath();
+		brush_tool.moveTo(Xa,Ya);
+		brush_tool.lineTo(Xa,Yc)
+		brush_tool.lineTo(Xc,Yc);
+		brush_tool.fill();
+
+		brush_tool.fillStyle = intColor;
+		brush_tool.beginPath();
+		brush_tool.moveTo((6*Xa + Xc)/7, (9*Ya + 5*Yc)/14);
+		brush_tool.lineTo((6*Xa + Xc)/7, (Ya + 6*Yc)/7)
+		brush_tool.lineTo((5*Xa + 9*Xc)/14, (Ya + 6*Yc)/7);
+		brush_tool.fill();
+
+	}
+
+	squareDrawing(50,50, 150,150, "black", "white")
+
+</script>
